@@ -1,0 +1,32 @@
+Primary Key:
+- Unique identifier of row
+- One per table
+- Does not allow NULL
+- Single or multiple columns (composite columns)
+
+
+Unique Key:
+- Ensures data is not duplicate
+- More than one per table
+- Allows one NULL
+
+
+Foreign Key:
+- Columns in a table that refer to Primary Key of another table
+- Enforces referential integrity
+- One-to-one
+- One-to-many
+- Many-to-many
+
+
+Data Type:
+- String - CHAR, VARCHAR
+- Integer - INT
+- Float - FLOAT
+- Data and time - DATE
+
+Default Value
+
+Column containing NULL value
+
+Auto increment column

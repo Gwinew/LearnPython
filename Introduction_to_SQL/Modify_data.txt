@@ -1,0 +1,42 @@
+All the commands - AKA CRUD
+
+SELECT (i.e. read)
+INSERT (i.e. create)
+UPDATE
+DELETE
+
+INSERT - Insert data to table, Command is actually INSTER INTO, Table name after command, only one table allowed, List of columns in parens "(" or ")", VALUES keyword, List of calues in parens, Values and columns must be equal.
+e.g.
+
+INSERT INTO
+person
+(person_id, first_name, last_name, contacted_number, data_last_contacted, date_added)
+VALUES
+(1,'Jon', 'Flanders', 0, NULL, '2016-05-14 11:43:31');
+
+BULK INSERT - INSERT allows only one table and column list, Inster multiple rows with one statement, Either multiple values list or SELECT statement following table name.
+e.g.
+INSERT INTO
+person p
+SELECT
+* FROM old_person op
+WHERE op.person_id > 300;
+-- I don't have a clearly example for that
+
+UPDATE - Modifies column(s) in a single table WHERE clause dictates which rows SET keyword follows table name
+e.g.
+UPDATE
+email_address e
+SET
+e.email_address = 'aaron@mail.com'
+WHERE
+e.email_address_id = 5;
+
+
+DELETE - DELETES one or more rows in a table Pernament! DELETE FROM is actual full command WHERE clause is critical!
+e.g.
+DELETE FROM person p; <- Bad practice
+
+DELETE FROM person p
+WHERE
+p.id = 5; <- Good practice

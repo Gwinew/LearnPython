@@ -1,0 +1,27 @@
+The Join Clause - Merges multiple tables into one result set, FROM clause includes all tables sparates each table with a comma, WHERE clause typically included, Expression with columns from each table, There are different types of JOIN
+
+CROSS JOIN - Simplest JOIN, all rows from both tables, No WHERE clause, least useful, inefficient, Cartesian Product, CROSS keyword implied.
+e.g.
+SELECT p.first_name, e.email_adress FROM person p, email_adddress e; <- BAD practice
+-- This create all rows from all call tables and if this values is reapeat then is reapet on result... If we have one 'Jon' and 2 different table then we have two 'Jon' in results.
+
+INNER JOIN - Most typical JOIN, Emphasizes relation nature of database, matches column in first table to second, primary key to foreign key is most common.
+e.g.
+SELECT p.first_name, p.last_name, e.email_adress FROM person p INNER JOIN email_address e ON p.person_id = e.email_address_person_id;
+
+OUTER JOIN - INNER JOIN doesn't deal with NULL values, OUTER JOIN works even when no match, NULL columns if no match in second table, FULL OUTER JOIN returns all joined rows, NULL when no match in either table.
+
+LEFT OUTER JOIN - Another NULL -related JOIN, ALL rows from the left side will be returned, NULL for non-matching right side table.
+e.g.
+SELECT p.first_name, p.last_name, e.emai_address FROM person p LEFT OUTER JOIN email_address e ON p.person_id = e.email_address_person_id;
+
+RIGHT OUTER JOIN - Opposite of LEFT OUTER JOIN, All rows from the right side will be returned, NULL for non-matching left side table.
+e.g.
+SELECT p.first_name, p.last_name, e.emai_address FROM person p RIGHT OUTER JOIN email_address e ON p.person_id = e.email_address_person_id;
+
+FULL OUTER JOIN
+e.g.
+SELECT p.first_name, p.last_name, e.emai_address FROM person p FULL OUTER JOIN email_address e ON p.person_id = e.email_address_person_id;
+-- If we don't have support to FULL OUTER JOIN then we need use UNION DISTINCT on the end of the end of commends (e.g. LEFT OUTER JOIN) and add the another command a oposit OUTER JOIN.
+
+SELF JOIN  - You can JOIN a table on itself, odd but sometimes useful, no special syntax, same table on left and tight side of join, useful when table contains hierachical data.

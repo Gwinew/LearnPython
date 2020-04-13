@@ -1,0 +1,105 @@
+Command:
+
+SELECT - Retrives (Take) one or more rows from one or more tables.
+e.g.
+SELECT first_name, last_name FROM contacts;
+
+INSERT - Adds one or more rows into a table
+eg.
+INSERT INTO contacts (first_name, last-name)
+VALUES('Fritz','Onion');
+
+UPDATE - Modifies one or more rows in a table
+e.g.
+UPDATE contacts SET last_name ='Ahern' WHERE id=1;
+
+DELETE - Removes one or more rows from one table
+e.g.
+DELETE FROM contacts WHERE id=2;
+
+* - Star, asterix
+When we using SELECT* FROM table_name we will take all the columns.
+This is bad practice because when data base update thise columns or adds columns and put this to strange situation with result.
+I don't have egxample to this, but need to belive that.
+
+-- - is sign is seperate part od code as comment.
+
+FROM Clause - Defines the table you want to query.
+
+DISTINCT - Use this to selected unique names from table.
+e.g.
+SELECT DISTINCT p.first_name FROM person p;
+NOT DISTINCT is unchanged form  - SELECT p.first_name FROM ...
+
+WHERE - Constrain the result set, Comes after the FROM clause contains boolean expressions, only matching rows are in the result set.
+e.g.
+SELECT p.last_name FROM person p(;)<--move this to the end
+WHERE p.firtst_name = 'Jon';
+
+Boolean Operators:
+= - equels
+<> - Not equal TO
+> - Greater Than
+< - Less Than
+>= - Great or equal
+<= - Less Than or equal
+
+##########
+Keyword:
+
+AND - If both are TRUE, row is inculded, if either is FALSE, row is excluded
+e.g. SELECT p.first_name, p.last_name FROM person p WHERE p.first_name = 'Jon' AND p.birthdate > '12/21/1058';
+
+OR - If both are TRUE, row is inculded, if either is FALSE, row is excluded,
+e.g.
+SELECT p.first_name FROM person p WHERE p.first_name ='Jon' OR p.last_name = 'Flanders';
+
+BETWEEN - Acts on column and two values, TRUE if column value is between two values, inclusive - includes two values (like >= & <=)
+e.g.
+SELECT p.first_name, p.last_name FROM person p WHERE p.contacted BETWEEN 1 AND 20;
+
+LIKE - A more fuzzy version of = , String with special characters inside, If the match is True, the row is returned
+e.g.
+SELECT p.first_name, p.last_name FROM person p WHERE p.first_name LIKE 'J%'; -- It is mean % wildecard character is take the rest unknown character, e.g. when we want takes return word with "o" inside then we use '%o%'
+-- The second things are we get result last name depends from first name. This cool.
+
+IN - Like a multi-value = operator, List of potential values, TRUE if any of values in the lust 'hit'
+e.g.
+SELECT p.first_name, p.last_name FROM person p WHERE p.first_name IN ('Jon','Fritz')
+
+
+IS - Special operator, like a equals operator but just for values that might be NULL
+e.g. 
+SELECT p.first_name, p.last_name FROM person p WHERE p.last_name IS NULL;
+
+IS NOT - Also just for NULL, Like a "NOT EQUALS" operator.
+e.g.
+SELECT p.first_name, p.last_name FROM person p WHERE p.last_name IS NOT NULL;
+
+
+
+ORDER BY - Allows sorting of result set, After the WHERE clause (if there is one), Specify one or more columns, seperate columns by commas, ASC (default) or DESC.
+e.g.
+SELECT p.last_name, p.first_name FROM person p ORDER BY p.last_name;
+
+############
+SET Function - Computes new values from column values, use in place of columns in SELECT clause, passes column name to function, help us to ask more interesting questions, often used with the DISTINCT qualifier:
+
+- COUNT -count of the column specified (includes NULL values if * is used)
+- MAX - Maximum values of the cokumn (does not include NULL values)
+- MIN - Minimul values of the cokumn (does not include NULL values)
+- AVG - Average of all value of the column (does not include NULL values, only numeric column)
+- SUM - Sum of all the value of the column (does not include NULL values, only numeric column)
+
+SET Functions + Qualifiers - Often used together, add inside of the function, run against DISTINCT column values.
+e.g.
+SELECT COUNT(DISTINCT p.first_name) FROM person p;
+
+
+GROUP BY - Allows multiple columns with a set function, breaks result set into substes, runs set function against each subset, result set return 1 row per subset, subset is dictated by column in GROUP BY, column must appear in the SELECT LIST, appears after FROM and/or WHERE Clauses.
+e.g.
+SELECT COUNT (p.first_name), p.first_name FROM person p GROUP BY p.first_name;
+
+HAVING - Works like WHERE works against SELECT, restricts the result set.
+e.g.
+SELECT COUNT(DISTICT p.first_name), p.first_name FROM person p GROUP BY p.first_name HAVING COUNT(DISTINCT p.first_name) >=5;

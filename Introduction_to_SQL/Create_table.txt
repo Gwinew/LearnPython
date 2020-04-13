@@ -1,0 +1,117 @@
+DATA DEFINITION LANGUAGE (DDL) - SQL subset for creating databases and tables, most tools have a visual method, Good to have an idea of what they are doing.
+
+CREATE DATABASE - Oddly not part of the SQL Standard is supported by most implementations, USE DATABASE to scope future queries, Can also fully qualify table name to database.
+e.g.
+
+CREATE DATABASE Contact; <- Create database command
+
+USE DATABASE Contact; <- Use database command
+SELECT * FROM person p; <- All queries will be in this database
+
+SELECT * FROM
+Contact.person p; <- Fully qualified Table name
+
+######
+CREATE TABLE - Is part of SQL Standard, Followed by table name, Then list of column definition, at minimum column name and type
+e.g.
+CREATE TABLE
+email_address
+(
+email_address_id
+INTEGER,
+email_address_person_id
+INTEGER,
+email_address
+VARCHAR(55)		<- no more then 55 characters
+);
+
+Standard SQL Data Types:
+
+Data Type - Value Space
+
+CHARACTER - can hold N character values - set to N statically
+CHARACTER VARYING - can hold N character values - set to N dynamically storage can be less then N
+BINARY - Hexadecimal data
+SMALLINT - -2^15(-32,768) to 2^15-1 (32,767)
+INTEGER - -2^31(-2,147,483,648) to 2^31-1 (2,147,483,647)
+BIGINT - -2^63 (-9,223,372,036,854,775,808) to 2^63-1 (9,223,372,036,854,775,807)
+BOOLEAN - TRUE or FALSE
+DATE - YEAR, MONTH, and DAY in format YYYY-MM-DD
+TIME - HOUR, MINUTE, and SECOND in format HH:MM:SS[.sF] where F is the fractional part of the
+TIMESTAMP - BOTH DATE and TIME
+
+USE contacts; <- it is needed to specify a database which we want to use to create the table.
+##########
+
+NULL VALUES - NULL is special value in SQL indicates a lack of a value, columns can be required or not required, required is NOT NULL, Not required is NULL.
+
+#########################################################################
+NULL                           # NOT NULL                               #
+                                                                        #
+Default for column definition  # Must be specified on column definition #
+Inserting NULL value ok        # Inserting NULL value is an error       #
+#########################################################################
+
+e.g.
+
+CREATE TABLE
+email_adress
+(
+email_address_id
+INTEGER NOT NULL,
+emcial_address_person_id
+INTEGER,
+email_address
+VARCHAR(55) NOT NULL
+);
+
+
+
+PRIMARY KEY - Must be a unique value per row, must be NOT NULL, can be a multiple columns (compound key)
+e.g.
+CREATE TABLE
+email_adress
+(
+email_address_id
+INTEGER PRIMARY KEY,
+emcial_address_person_id
+INTEGER,
+email_address
+VARCHAR(55) NOT NULL
+);
+
+
+CONSTRAINT - Way to add keys in one grouping Primary or foriegn keys.
+e.g.
+CREATE TABLE phone_number
+(
+phone_number_id
+INTEGER NOT NULL,
+phone_number_person_id
+INTEGER NOT NULL,
+phone_number
+VARCHAR(55) NOT NULL,
+CONSTRAINT
+PK_phone_number
+PRIMARY KEY
+(phone_nukber_id)
+);
+
+
+ALTER TABLE - Used to change an existing table, Add/remove column, change column data type, change column contraints, Must comport with current data.
+e.g.
+
+ALTER TABLE
+email_address
+ADD CONSTRAINT
+FK_email_address_person
+FOREIGN KEY
+(email_address_person_id)
+REFERENCES
+person
+(person_id);
+
+
+DROP TABLE - removes table and all data from database, be careful! Error if table is a foreign key to another table.
+e.g.
+DROP TABLE person; <- drop table command

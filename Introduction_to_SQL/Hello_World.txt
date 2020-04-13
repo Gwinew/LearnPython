@@ -1,0 +1,12 @@
+Qualifying Collumn Name with Table Name:
+
+SELECT first_name, last name FROM person;
+
+SELECT person.first-name, person.last_name FROM person; <- good practice
+###########
+Aliasing the Table Name:
+
+SELECT p.first_name, p.last_name FROM person p; <-using alias we create comand with smallest character number <- BEST Practice
+############
+SELECT DISTINCT p.person_first_name, p.person_last_name as LastName 
+-- It returns unique person but when that values is different in second collumn then is return unique for two collumns

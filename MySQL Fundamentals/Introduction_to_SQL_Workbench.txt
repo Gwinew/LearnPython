@@ -1,0 +1,6 @@
+Connect to Database:
+1. We add hostname
+2. We add Username
+3. Make a password
+4. Write a Connection Name
+
