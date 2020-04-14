@@ -1,0 +1,16 @@
+CREATE TABLE ActorSample (
+actor_id smallint(5) insigned NOT NULL AUTO_INCREMENT,
+first_name varchar(45) NOT NULL,
+last_name varchar(45) NULL,
+last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY(actor_id)
+);
+
+AUTO_INCREMENT - add auto next avaible index, we don't assigned id manual 
+
+
+
+INSERT INTO sakila.actorsample
+VALUES (DEFAULT, 'Nupr','Dave', '2013-04-16');
+
+DEFAULT is a automatic assign next avaiable number

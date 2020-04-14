@@ -1,0 +1,139 @@
+SELECT NOW(); <- Display this time with date  and time
+SELECT CURDATE(); <- Display this date
+SELECT CURTIME(); <- Display this time
+SELECT PI(); <- Display Pi
+SELECT MOD(45,7); <- result is 3 -- Return the remainder of 45/7
+SELECT SQRT(25); <- Result 5
+####################################
+
+SELECT *
+FROM sakila.city;
+
+SELECT *
+FROM sakila.actor;
+
+but we can use another commmand to specify where we want to be:
+
+USE sakila;
+SELECT *
+FROM city;
+
+######################
+
+SELECT *
+FROM sakila.actor
+ORDER BY first_name DESC;  -- DESC (descending) go from up to down -- ASC (ascending) go down to up
+####################
+Arithmetic expression
+
+MULTIPLICATION - *
+DIVISION - /
+INTEGER DIVISION - DIV
+MODULO - % or MOD
+ADDITION - +
+SUBSTRACTION - -
+
+#############################
+
+SELECT replacement_cost-rental_rate,
+	film_id AS filmID,
+	length/60
+FROM sakila.film;
+
+#################
+
+SELECT replacement_cost-rental_rate AS CostDiff,
+	film_id AS filmID,
+	length/60 AS TimeinHour
+FROM sakila.film;
+
+################
+
+SELECT rental_rate AS RentalRate,
+	rental_rate + 3 * 4 - 1 AS Result1,
+	(rental_rate + 3) * 4 - 1 AS Result2,
+	(rental_rate + 3) * (4 - 1) AS Result3,
+	rental_rate + (3 * 4) - 1 AS Result4
+FROM sakila.film;
+
+################
+
+SELECT replacement_cost AS ReplacementCost,
+	replacement_cost / 5 AS DecimalRentalRate,
+	replacement_cost DIV 5 AS IntegerRentalRate,
+	replacement_cost % 5 AS RemainderRentalRate
+FROM sakila.film;
+##################
+
+SELECT CONCAT(first_name, ' ', last_name) AS Fullname
+FROM sakila.actor;
+
+#################
+
+SELECT amount,
+	ROUND(amount) Amnt, ROUND(amount,1) Amnt1,
+	FLOOR(amount) FloorAmnt, CEILING(amount) CeilingAmnt
+FROM sakila.payment;
+
+#################
+
+SELECT CONCAT(first_name, ' ', last_name) AS FullName,
+	DATA_FORMAT(last_update, GET_FORMAT(DATETIME, 'EUR')) AS LastUpdate1,
+	DATA_FORMAT(last_update, GET_FORMAT(DATETIME, 'ISO')) AS LastUpdate2,
+	DATA_FORMAT(last_update, GET_FORMAT(DATETIME, 'USA')) AS LastUpdate3
+FROM sakila.actor;
+
+#######################
+
+ROUND() - Round up, round dwon to close on number
+with second parameter e.g. 1 then round the number to one digit after point
+
+FLOOR() - Round down from all space of number e.g. from 2.99 to 2
+CEILING() - Round up from all space of number e.g. from 1.01 to 2
+
+CONCAT() - merge a few table of string to the one resulut on one table
+
+LEFT(,) - Take tha letter of strings from left e.g. LEFT(first_name,1) = P
+
+LENGTH() - Calculate a letter in string (space in included)
+
+REVERS() - Show the result in revers
+
+REPLACE() - replace a value to a another value : REPLACE(from where, what, to what)
+
+DATE_FORMAT() - take a data and display to format what you want DATA_FROMAT(from where, '%m/%d/%y') or DATA_FROMAT(from where, '%m-%d-%y') 
+
+GET_FORMAT() - take a format to specify data e.g. GET_FORMAT(DATETIME, 'EUR')
+
+DEYOFWEEK() - display the number day of week where monday is one
+
+QUARTER() - display quarter of the year
+
+WEEK() - display the number of week
+
+MONTHNAME() - display a name of moth
+
+########################
+
+WHERE clause other operation
+
+IN (and NOT IN)
+BETWEEN (and NOT BETWEEN)
+LIKE (and NOT LIKE)
+- Wildcard - %
+- Wildcard - _
+
+NULL clause
+- IS NULL clause
+- IS NOT NULL clause
+
+Wildcard - _ - is sign take a blank letter on this space e.g. A__C = ALEC, ABEC etc.
+
+#####################
+
+LIMIT
+
+SELECT *
+FROM sakila.actor
+ORDER BY actor_id
+LIMIT 25, 5; <- display 5 value after 25
